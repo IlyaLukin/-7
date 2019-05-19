@@ -8,61 +8,48 @@ namespace ConsoleApp42
 {
     class Program
     {
-        static public bool NextSet(int []a, int N,int M)
+   
+        public static IEnumerable<int[]> Combinations(int m, int n)
         {
-            int k = M;
-            for(int i= k-1; i>=0; --i)
-            if (a[i] < N-k+i+1)
-            {
-                    ++a[i];
-                    for (int j = i + 1; j < k; ++j)
-                        a[j] = a[j - 1] + 1;
-                    return true;
-            }
-            return false;
-        }
+            int[] result = new int[m];
+            Stack<int> stack = new Stack<int>();
+            stack.Push(0);
 
-        static void Print(int []a,int N,ref int num)
-        {
-            num += 1;
-            Console.Write($"Результат{num}: ");
-            for (int i=0;i<N;i++)
+            while (stack.Count > 0)
             {
-                
-                Console.Write($"{a[i]} ");
+                int index = stack.Count - 1;
+                int value = stack.Pop();
+
+                while (value < n)
+                {
+                    result[index++] = ++value;
+                    stack.Push(value);
+
+                    if (index == m)
+                    {
+                        yield return result;
+                        break;
+                    }
+                }
             }
-            Console.WriteLine();
-            
         }
 
         static void Main(string[] args)
         {
-            int[] a = null;
+              Console.WriteLine("Введите количество комбинаций");
+              int N = int.Parse(Console.ReadLine());
+              Console.WriteLine($"N={N}");
 
-            Console.WriteLine("Введите количество элементов");
-            int N = int.Parse(Console.ReadLine());
-            Console.WriteLine($"N={N}");
-
-            Console.WriteLine("Введите количество чисел");
-            int M = int.Parse(Console.ReadLine());
-            Console.WriteLine($"M={M}");
-
-            a = new int[N];
-            int num = 0;
-            for (int i=0;i<N;i++)
+              Console.WriteLine("Введите количество чисел");
+              int M = int.Parse(Console.ReadLine());
+              Console.WriteLine($"M={M}");
+            foreach (int[] c in Combinations(N, M))
             {
-                a[i] = i + 1;
-                Print(a, M, ref num);
-            }
+                Console.WriteLine(string.Join(",", c));
 
-            if(N>=M)
-            {
-                while (NextSet(a, N, M))
-                    Print(a, M, ref num);
-                
             }
             Console.ReadKey();
-            
+
         }
     }
 }
