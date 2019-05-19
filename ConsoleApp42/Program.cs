@@ -11,12 +11,14 @@ namespace ConsoleApp42
    
         public static IEnumerable<int[]> Combinations(int m, int n)
         {
-            int[] result = new int[m];
-            Stack<int> stack = new Stack<int>();
-            stack.Push(0);
-
-            while (stack.Count > 0)
+            if (n > 0 && m > 0)
             {
+               int[] result = new int[m];
+               Stack<int> stack = new Stack<int>();
+               stack.Push(0);
+
+               while (stack.Count > 0)
+             {
                 int index = stack.Count - 1;
                 int value = stack.Pop();
 
@@ -31,18 +33,25 @@ namespace ConsoleApp42
                         break;
                     }
                 }
-            }
+              }
+            }else Console.WriteLine("Ошибка, неверный формат числа");
         }
 
         static void Main(string[] args)
         {
-              Console.WriteLine("Введите количество комбинаций");
-              int N = int.Parse(Console.ReadLine());
-              Console.WriteLine($"N={N}");
-
-              Console.WriteLine("Введите количество чисел");
-              int M = int.Parse(Console.ReadLine());
-              Console.WriteLine($"M={M}");
+             int N = 0, M = 0;
+            try{
+                  Console.WriteLine("Введите количество комбинаций");
+                   N = int.Parse(Console.ReadLine());
+                  Console.WriteLine($"N={N}");
+                }catch { Console.WriteLine("Неверный формат числа"); }
+            
+            try{
+                  Console.WriteLine("Введите количество чисел");
+                   M = int.Parse(Console.ReadLine());
+                   Console.WriteLine($"M={M}");
+               }catch { Console.WriteLine("Неверный формат числа"); }
+                
             foreach (int[] c in Combinations(N, M))
             {
                 Console.WriteLine(string.Join(",", c));
