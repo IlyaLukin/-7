@@ -11,30 +11,38 @@ namespace ConsoleApp42
    
         public static IEnumerable<int[]> Combinations(int m, int n)
         {
-            if (n > 0 && m > 0)
+             if (n > 0 && m > 0)
             {
-               int[] result = new int[m];
-               Stack<int> stack = new Stack<int>();
-               stack.Push(0);
-
-               while (stack.Count > 0)
-             {
-                int index = stack.Count - 1;
-                int value = stack.Pop();
-
-                while (value < n)
+                if (n > m)
                 {
-                    result[index++] = ++value;
-                    stack.Push(value);
+                    int[] result = new int[m];
+                    Stack<int> stack = new Stack<int>();
+                    stack.Push(0);
 
-                    if (index == m)
+                    while (stack.Count > 0)
                     {
-                        yield return result;
-                        break;
+                        int index = stack.Count - 1;
+                        int value = stack.Pop();
+
+                        while (value < n)
+                        {
+                            result[index++] = ++value;
+                            stack.Push(value);
+
+                            if (index == m)
+                            {
+                                yield return result;
+                                break;
+                            }
+                        }
                     }
+
                 }
-              }
-            }else Console.WriteLine("Ошибка, неверный формат числа");
+                else Console.WriteLine("N должно быть меньше M");
+               
+            }
+            else  Console.WriteLine("Ошибка, неверный формат числа");
+           
         }
 
         static void Main(string[] args)
