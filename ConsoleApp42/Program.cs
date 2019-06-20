@@ -49,13 +49,13 @@ namespace ConsoleApp42
         {
              int N = 0, M = 0;
             try{
-                  Console.WriteLine("Введите количество комбинаций");
+                  Console.WriteLine("Введите число элементов в комбинации");
                    N = int.Parse(Console.ReadLine());
                   Console.WriteLine($"N={N}");
                 }catch { Console.WriteLine("Неверный формат числа"); }
             
             try{
-                  Console.WriteLine("Введите количество чисел");
+                  Console.WriteLine("Введите общее число элементов");
                    M = int.Parse(Console.ReadLine());
                    Console.WriteLine($"M={M}");
                }catch { Console.WriteLine("Неверный формат числа"); }
