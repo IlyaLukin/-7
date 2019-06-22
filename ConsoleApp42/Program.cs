@@ -47,20 +47,20 @@ namespace ConsoleApp42
 
         static void Main(string[] args)
         {
-             int N = 0, M = 0;
+             int N = 0, K = 0;
             try{
                   Console.WriteLine("Введите число элементов в комбинации");
-                   N = int.Parse(Console.ReadLine());
+                   K = int.Parse(Console.ReadLine());
                   Console.WriteLine($"N={N}");
                 }catch { Console.WriteLine("Неверный формат числа"); }
             
             try{
                   Console.WriteLine("Введите общее число элементов");
-                   M = int.Parse(Console.ReadLine());
+                   N = int.Parse(Console.ReadLine());
                    Console.WriteLine($"M={M}");
                }catch { Console.WriteLine("Неверный формат числа"); }
                 
-            foreach (int[] c in Combinations(N, M))
+            foreach (int[] c in Combinations(N, K))
             {
                 Console.WriteLine(string.Join(",", c));
 
